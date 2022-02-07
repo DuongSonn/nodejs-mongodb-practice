@@ -30,7 +30,8 @@
   "author": "Dương Trần Hoài Sơn <sondth@appota.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only tsconfig-paths/register src/app.ts",
+    "dev": "ts-node -r tsconfig-paths/register ./src/app.ts",
+    "dev2": "ts-node-dev -r tsconfig-paths/register ./src/app.ts",
     "eslint": "eslint . --ext .ts",
     "lint:fix": "npm run eslint -- --fix"
   },

@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
+import _ from 'lodash';
 
 import { CreateUserInput } from '@/schemas/user.schema';
 import { userService } from '@/services';
@@ -8,12 +9,11 @@ export const userController = {
   createUserHandler: async (
     req: Request<{}, {}, CreateUserInput['body']>,
     res: Response,
-    next: NextFunction,
   ) => {
     try {
       const user = await userService.createUser(req.body);
 
-      return res.status(201);
+      return res.status(201).send(_.omit(user.toJSON(), 'password'));
     } catch (e: any) {
       logger.error(e);
       return res.status(409).send(e.message);
