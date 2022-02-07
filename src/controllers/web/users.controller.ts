@@ -6,17 +6,17 @@ import { userService } from '@/services';
 import logger from '@/utils/logger';
 
 export const userController = {
-  createUserHandler: async (
-    req: Request<{}, {}, CreateUserInput['body']>,
-    res: Response,
-  ) => {
-    try {
-      const user = await userService.createUser(req.body);
+    createUserHandler: async (
+        req: Request<{}, {}, CreateUserInput['body']>,
+        res: Response,
+    ) => {
+        try {
+            const user = await userService.createUser(req.body);
 
-      return res.status(201).send(_.omit(user.toJSON(), 'password'));
-    } catch (e: any) {
-      logger.error(e);
-      return res.status(409).send(e.message);
-    }
-  },
+            return res.status(201).send(_.omit(user.toJSON(), 'password'));
+        } catch (e: any) {
+            logger.error(e);
+            return res.status(409).send(e.message);
+        }
+    },
 };

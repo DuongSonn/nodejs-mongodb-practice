@@ -12,9 +12,9 @@ const app = express();
 app.use(express.json());
 
 app.listen(port || 1998, async () => {
-  logger.info(`App is running at http://localhost:${port}`);
+    logger.info(`App is running at http://localhost:${port}`);
 
-  await connect();
+    await connect();
 
-  routes(app);
+    routes(app);
 });
