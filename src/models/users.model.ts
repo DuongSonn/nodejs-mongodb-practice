@@ -52,13 +52,13 @@ userSchema.pre('save', async function (next: any) {
     return next();
 });
 
-userSchema.methods.comparePassword = async (
+userSchema.methods.comparePassword = async function (
     candidatePassword: string,
-): Promise<boolean> => {
+): Promise<boolean> {
     const user = this as unknown as IUser;
     return bcrypt.compare(candidatePassword, user.password).catch(() => false);
 };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model<IUser>('User', userSchema);
 
 export default User;

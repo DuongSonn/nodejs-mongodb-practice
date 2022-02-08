@@ -5,7 +5,7 @@ import { IUser } from './users.model';
 export interface ISession extends Document {
     user_id: IUser['_id'];
     valid: boolean;
-    userAgent: string;
+    user_agent: string;
     created_at: Date;
     updated_at: Date;
     comparePassword(candidatePassword: string): Promise<boolean>;
@@ -15,13 +15,13 @@ const sessionSchema: Schema<ISession> = new mongoose.Schema(
     {
         user_id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: 'users',
         },
         valid: {
             type: Boolean,
             default: true,
         },
-        userAgent: {
+        user_agent: {
             type: String,
         },
     },

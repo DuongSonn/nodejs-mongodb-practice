@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import _ from 'lodash';
 
 import { CreateUserInput } from '@/schemas/user.schema';
 import { userService } from '@/services';
@@ -13,7 +12,7 @@ export const userController = {
         try {
             const user = await userService.createUser(req.body);
 
-            return res.status(201).send(_.omit(user.toJSON(), 'password'));
+            return res.status(201).send(user);
         } catch (e: any) {
             logger.error(e);
             return res.status(409).send(e.message);
